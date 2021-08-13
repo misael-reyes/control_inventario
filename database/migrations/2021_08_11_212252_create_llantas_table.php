@@ -13,7 +13,7 @@ class CreateLlantasTable extends Migration
      */
     public function up()
     {
-        Schema::create('llanta', function (Blueprint $table) {
+        Schema::create('llantas', function (Blueprint $table) {
             $table->id();
 
             $table->string('medida', 10);
@@ -31,19 +31,19 @@ class CreateLlantasTable extends Migration
             $table->unsignedBigInteger('vehiculo_id')->nullable();
             $table->foreign('vehiculo_id')
                 ->references('id')
-                ->on('vehiculo')
+                ->on('vehiculos')
                 ->onDelete('set null');
 
             $table->unsignedBigInteger('marca_id')->nullable();
             $table->foreign('marca_id')
                 ->references('id')
-                ->on('marca')
+                ->on('marcas')
                 ->onDelete('set null');
 
             $table->unsignedBigInteger('proveedor_id')->nullable();
             $table->foreign('proveedor_id')
                 ->references('id')
-                ->on('proveedor')
+                ->on('proveedors')
                 ->onDelete('set null');
 
             $table->timestamps();
@@ -57,6 +57,6 @@ class CreateLlantasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('llanta');
+        Schema::dropIfExists('llantas');
     }
 }

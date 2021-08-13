@@ -14,8 +14,8 @@ class MarcaController extends Controller
      */
     public function index()
     {
-        //
-        return view('marca.index');
+        $datos = Marca::all();
+        return view('marca.index', compact('datos'));
     }
 
     /**
@@ -25,7 +25,7 @@ class MarcaController extends Controller
      */
     public function create()
     {
-        //
+        return view('marca.create');
     }
 
     /**
@@ -36,7 +36,15 @@ class MarcaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre_marca'=>'required'
+        ]);
+        $datosMarca = request()->except('_token');
+        try {
+            Marca::insert($datosMarca);
+            return redirect('marca')->with('mensaje', 'Chofer agregado con éxito');
+        } catch (\Illuminate\Database\QueryException $e) {
+        }
     }
 
     /**
@@ -56,9 +64,15 @@ class MarcaController extends Controller
      * @param  \App\Models\Marca  $marca
      * @return \Illuminate\Http\Response
      */
-    public function edit(Marca $marca)
+    public function edit($id)
     {
-        //
+        //$verM = Marca::select('id','nombre_marca')
+        //->where('id',$id)
+        //->first();
+
+        $marca = Marca::findOrFail($id);
+
+        return view('marca.edit', compact('marca'));
     }
 
     /**
@@ -68,9 +82,11 @@ class MarcaController extends Controller
      * @param  \App\Models\Marca  $marca
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Marca $marca)
+    public function update(Request $request, $id)
     {
-        //
+        $datosMarca = request()->except(['_token', '_method']);
+        Marca::where('id', '=', $id)->update($datosMarca); //actualizamos en la BD
+        return redirect('marca')->with('mensaje', 'Chofer modificado');
     }
 
     /**
@@ -79,8 +95,9 @@ class MarcaController extends Controller
      * @param  \App\Models\Marca  $marca
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Marca $marca)
+    public function destroy($id)
     {
-        //
+        Marca::destroy($id);
+        return redirect('marca')->with('mensaje', 'Marca eliminada');
     }
 }
