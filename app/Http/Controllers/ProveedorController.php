@@ -14,8 +14,9 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        //
-        return view('proveedor.index');
+        $datos = Proveedor::all();
+        //  return response()->json($marcas);
+        return view('proveedor.index', compact('datos'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ProveedorController extends Controller
      */
     public function create()
     {
-        //
+        return view('proveedor.create');
     }
 
     /**
@@ -36,7 +37,20 @@ class ProveedorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validamos campos
+        $request->validate([
+            'nombre' => 'required',
+            'num_telefono' => 'required',
+            'e_mail' => 'required',
+            'direccion_calle' => 'required',
+            'direccion_colonia' => 'required',
+            'direccion_numero' => 'required',
+            'direccion_ciudad' => 'required',
+            'direccion_estado' => 'required'
+        ]);
+
+        $proveedor = Proveedor::create($request->all());
+        return redirect('proveedor');
     }
 
     /**
@@ -56,9 +70,12 @@ class ProveedorController extends Controller
      * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proveedor $proveedor)
+    public function edit($id)
     {
         //
+        //$proveedor = Proveedor::findOrFail($id);
+        $proveedor = Proveedor::findOrFail($id);
+        return view('proveedor.edit', compact('proveedor'));
     }
 
     /**
@@ -68,9 +85,23 @@ class ProveedorController extends Controller
      * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proveedor $proveedor)
+    public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'nombre' => 'required',
+            'num_telefono' => 'required',
+            'e_mail' => 'required',
+            'direccion_calle' => 'required',
+            'direccion_colonia' => 'required',
+            'direccion_numero' => 'required',
+            'direccion_ciudad' => 'required',
+            'direccion_estado' => 'required'
+        ]);
+
+        $datosProveedor = request()->except(['_token', '_method']);
+        Proveedor::where('id', '=', $id)->update($datosProveedor); 
+        return redirect('proveedor');
     }
 
     /**
@@ -79,8 +110,10 @@ class ProveedorController extends Controller
      * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proveedor $proveedor)
+    public function destroy($id)
     {
-        //
+        // 
+        Proveedor::destroy($id);
+        return redirect('proveedor');
     }
 }
