@@ -14,8 +14,8 @@ class VehiculoController extends Controller
      */
     public function index()
     {
-        //
-        return view('vehiculo.index');
+        $datos = Vehiculo::all(); //Traemos los datos de la tabla Vehiculo
+        return view('vehiculo.index', compact('datos'));
     }
 
     /**
@@ -25,7 +25,7 @@ class VehiculoController extends Controller
      */
     public function create()
     {
-        //
+        return view('vehiculo.create');
     }
 
     /**
@@ -36,7 +36,14 @@ class VehiculoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'marca' => 'required',
+            'modelo' => 'required',
+            'nombre' => 'required'
+        ]);
+
+        $vehiculo = Vehiculo::create($request->all());
+        return redirect('vehiculo');
     }
 
     /**
@@ -56,9 +63,11 @@ class VehiculoController extends Controller
      * @param  \App\Models\Vehiculo  $vehiculo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vehiculo $vehiculo)
+    public function edit($id)
     {
-        //
+        $vehiculo = Vehiculo::findOrFail($id);
+
+        return view('vehiculo.edit' , compact('vehiculo'));
     }
 
     /**
@@ -68,9 +77,17 @@ class VehiculoController extends Controller
      * @param  \App\Models\Vehiculo  $vehiculo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vehiculo $vehiculo)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'marca' => 'required',
+            'modelo' => 'required',
+            'nombre' => 'required'
+        ]);
+
+        $datosVehiculo = request()->except(['_token', '_method']);
+        Vehiculo::where('id', '=', $id)->update($datosVehiculo); //actualizamos en la BD
+        return redirect('vehiculo');
     }
 
     /**
@@ -79,8 +96,9 @@ class VehiculoController extends Controller
      * @param  \App\Models\Vehiculo  $vehiculo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vehiculo $vehiculo)
+    public function destroy($id)
     {
-        //
+        Vehiculo::destroy($id);
+        return redirect('vehiculo');
     }
 }

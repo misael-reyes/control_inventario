@@ -16,7 +16,7 @@ class CreateVehiculosTable extends Migration
         Schema::create('vehiculos', function(Blueprint $table){
             $table->id();
             $table->string('marca', 30);
-            $table->integer('modelo');
+            $table->string('modelo');
             $table->string('nombre', 30);
             $table->timestamps();//created_at update_at
         });
