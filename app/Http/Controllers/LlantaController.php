@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Llanta;
+use App\Notifications\EliminarNotification;
+use App\Notifications\TelegramController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -58,10 +60,13 @@ class LlantaController extends Controller
             'vehiculo_id' => 'required',
             'precio_v' => 'required',
             'precio_c' => 'required',
-            'descuento' => 'required'
+            'descuento' => 'required',
+            'stock' => 'required'
         ]);
 
         $llanta = Llanta::create($request->all());
+        //notificamos
+        $llanta->notify(new TelegramController());
         return redirect('llanta');
 
     }
@@ -118,7 +123,8 @@ class LlantaController extends Controller
             'vehiculo_id' => 'required',
             'precio_v' => 'required',
             'precio_c' => 'required',
-            'descuento' => 'required'
+            'descuento' => 'required',
+            'stock' => 'required'
         ]);
 
         $datosLlanta = request()->except(['_token', '_method']);
@@ -135,7 +141,10 @@ class LlantaController extends Controller
     public function destroy($id)
     {
         //
+        $llanta = LLanta::find($id);
         Llanta::destroy($id);
+        //notificamos en le canal de telegram
+        $llanta->notify(new EliminarNotification());
         return redirect('llanta');
     }
 }

@@ -27,6 +27,7 @@
                 <th>Precio de compra</th>
                 <th>Descuento</th>
                 <th>ID Proveedor</th>
+                <th>Stock</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -49,6 +50,7 @@
                 <td>{{ $dato->precio_c }}</td>
                 <td>{{ $dato->descuento }}</td>
                 <td>{{ $dato->proveedor_id }}</td>
+                <td>{{ $dato->stock }}</td>
                 <td>
                     <a href="{{ url('/llanta/'.$dato->id.'/edit') }}" class="btn btn-primary">
                         Editar

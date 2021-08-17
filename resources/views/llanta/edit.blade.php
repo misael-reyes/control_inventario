@@ -118,7 +118,7 @@
         </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
             <label for="precio_v">Precio de venta</label>
             <input type="number" class="form-control" id="precio_v" name="precio_v" value="{{ old('precio_v', $llanta->precio_v) }}">
             @error('precio_v')
@@ -126,7 +126,7 @@
             <br>
             @enderror
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
             <label for="precio_c">Precio de compra</label>
             <input type="number" class="form-control" id="precio_c" name="precio_c" value="{{ old('precio_c', $llanta->precio_c) }}">
             @error('precio_c')
@@ -134,10 +134,18 @@
             <br>
             @enderror
         </div>
-        <div class="form-group col-md-4">
+        <div class="form-group col-md-3">
             <label for="descuento">Descuento</label>
             <input type="number" class="form-control" id="descuento" name="descuento" value="{{ old('descuento', $llanta->descuento) }}">
             @error('descuento')
+            <small>*{{$message}}</small>
+            <br>
+            @enderror
+        </div>
+        <div class="form-group col-md-3">
+            <label for="stock">Stock</label>
+            <input type="number" class="form-control" id="stock" name="stock" value="{{old('stock', $llanta->stock)}}">
+            @error('stock')
             <small>*{{$message}}</small>
             <br>
             @enderror

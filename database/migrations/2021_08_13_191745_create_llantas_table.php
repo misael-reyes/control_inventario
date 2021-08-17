@@ -27,6 +27,7 @@ class CreateLlantasTable extends Migration
             $table->integer('precio_v');
             $table->integer('precio_c');
             $table->integer('descuento');
+            $table->integer('stock');
 
             $table->unsignedBigInteger('vehiculo_id')->nullable();
             $table->foreign('vehiculo_id')
