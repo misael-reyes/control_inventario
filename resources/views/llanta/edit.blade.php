@@ -151,6 +151,7 @@
             @enderror
         </div>
     </div>
+    <input type="hidden" id="activo" name="activo" value="1"/>
     <button type="submit" class="btn btn-primary">Guardar cambios</button>
     <a href="{{ url('llanta/') }}" class="btn btn-danger">Regresar</a>
 </form>

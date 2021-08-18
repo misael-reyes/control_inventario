@@ -59,7 +59,7 @@
                     <form action="{{ url('/llanta/'.$dato->id) }}" class="d-inline" method="post">
                         @csrf
                         {{ method_field('DELETE') }}
-                        <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres borrar?')" value="Borrar">
+                        <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres dar de baja este registro?')" value="Baja">
                     </form>
                 </td>
             </tr>

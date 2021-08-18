@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiController\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('ver_medida', [ApiController::class, 'ver_medida']);
+Route::post('alta_llanta', [ApiController::class, 'alta_llanta']);
+Route::post('actualizar_stock', [ApiController::class, 'actualizar_stock']);
+Route::post('baja_llanta', [ApiController::class, 'baja_llanta']);
+Route::post('eliminar_llanta', [ApiController::class, 'eliminar_llanta']);

@@ -18,7 +18,7 @@ class LlantaController extends Controller
     public function index()
     {
         //recuperamos las llantas que se encuentre en la BD
-        $datos = Llanta::all();
+        $datos = Llanta::all()->where('activo',1);
         //  return response()->json($marcas);
         return view('llanta.index', compact('datos'));
     }
@@ -133,16 +133,18 @@ class LlantaController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Dar de baja
      *
      * @param  \App\Models\Llanta  $llanta
-     * @return \Illuminate\Http\Response
+      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
         $llanta = LLanta::find($id);
-        Llanta::destroy($id);
+        // Llanta::destroy($id);
+        $llanta->activo = 0;
+        $llanta->save();
         //notificamos en le canal de telegram
         $llanta->notify(new EliminarNotification());
         return redirect('llanta');
