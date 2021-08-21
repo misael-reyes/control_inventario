@@ -14,7 +14,7 @@ class ProveedorController extends Controller
      */
     public function index()
     {
-        $datos = Proveedor::all();
+        $datos = Proveedor::paginate(5);//<!-- Esto sirve para la paginación-!>
         //  return response()->json($marcas);
         return view('proveedor.index', compact('datos'));
     }

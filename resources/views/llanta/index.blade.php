@@ -62,10 +62,15 @@
                         <input class="btn btn-danger" type="submit" onclick="return confirm('¿Quieres dar de baja este registro?')" value="Baja">
                     </form>
                 </td>
+                
             </tr>
+            
             @endforeach
+            
         </tbody>
-
+        
     </table>
+   
 </div>
+{!!$datos->render()!!}<!-- Esto sirve para la paginación-!>
 @endsection

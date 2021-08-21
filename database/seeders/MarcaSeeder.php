@@ -28,5 +28,7 @@ class MarcaSeeder extends Seeder
         $marca3->id= 3;
         $marca3->nombre_marca= "BFGoodrich";
         $marca3->save();
+
+        
     }
 }

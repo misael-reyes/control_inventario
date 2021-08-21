@@ -73,5 +73,17 @@ class ProveedorSeeder extends Seeder
         $p4->direccion_ciudad = "Ciudad Juárez";
         $p4->direccion_estado = "Chihuahua";
         $p4->save();
+
+        $p5 = new Proveedor();
+        $p5->id = 6;
+        $p5->nombre = "Unoroyal S.A. de S.V.";
+        $p5->num_telefono = "9513451211";
+        $p5->e_mail = "uniroyal@gmail.com";
+        $p5->direccion_calle = "Independencia";
+        $p5->direccion_colonia = "San Bartolo";
+        $p5->direccion_numero = 32;
+        $p5->direccion_ciudad = "Monterrey";
+        $p5->direccion_estado = "Nuevo León";
+        $p5->save();
     }
 }
