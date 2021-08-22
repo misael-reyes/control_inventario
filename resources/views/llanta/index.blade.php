@@ -72,5 +72,5 @@
     </table>
    
 </div>
-{!!$datos->render()!!}<!-- Esto sirve para la paginación-!>
+{!!$datos->render()!!} <!--Esto es para la paginación-->
 @endsection

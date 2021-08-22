@@ -54,5 +54,5 @@
 
     </table>
 </div>
-{!!$datos->render()!!}<!-- Esto sirve para la paginación-!>
+{!!$datos->render()!!}<!--Esto sirve para la paginación-->
 @endsection
