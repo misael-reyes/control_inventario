@@ -14,7 +14,7 @@ class VehiculoController extends Controller
      */
     public function index()
     {
-        $datos = Vehiculo::paginate(5);//Traemos los datos de la tabla Vehiculo
+        $datos = Vehiculo::paginate(8);//Traemos los datos de la tabla Vehiculo
         return view('vehiculo.index', compact('datos'));
     }
 

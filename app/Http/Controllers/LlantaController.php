@@ -18,7 +18,7 @@ class LlantaController extends Controller
     public function index()
     {
         //recuperamos las llantas que se encuentre en la BD
-        $datos = Llanta::paginate(5);//<!-- Esto sirve para la paginación-!>
+        $datos = Llanta::where('activo',1)->paginate(5);//<!-- Esto sirve para la paginación-!>
         //  return response()->json($marcas);
         return view('llanta.index', compact('datos'));
     }
